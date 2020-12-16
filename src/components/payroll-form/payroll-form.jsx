@@ -136,11 +136,13 @@ const PayrollForm = (props) => {
           console.log("id"+formValue.id);
           employeeService.addEmployee(object)
             .then((data) => {
+                console.log(data+" \n Data Added successfully!");
               alert("data added successfully");
               props.history.push("");
               window.location.reload();
             })
-            .catch((err) => {
+            .catch((error) => {
+                console.log(error+" cannot load data!");
               alert("error while Adding data");
             });
         }
