@@ -11,6 +11,10 @@ import EmployeeService from "../../services/employee-payroll-service";
 
 const Display = (props) => {
   const employeeService = new EmployeeService();
+  const update = (employeeId) => {
+    props.history.push(`payroll-form/${employeeId}`);
+  };
+
   return (
     <table id="display" className="display">
       <tbody>
@@ -58,6 +62,7 @@ const Display = (props) => {
                   alt="delete"
                 />
                 <img
+                  onClick={() => update(element.id)}
                   src={editIcon}
                   alt="edit"
                 />
