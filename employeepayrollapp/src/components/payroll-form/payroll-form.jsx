@@ -5,8 +5,8 @@ import profile3 from '../../assets/profile-images/Ellipse -7.png';
 import profile4 from '../../assets/profile-images/Ellipse -8.png';
 import './payroll-form.scss';
 import EmployeeService from "../../services/employee-payroll-service";
-import logo from 'D:/ReactJS/demoReact/EmployeePayrollApp/employeepayrollapp/src/assets/images/logo.png'
-import { useParams, Link, withRouter } from 'react-router-dom';
+import logo from 'D:/ReactJS/demoReact/EmployeePayrollApp/employeepayrollapp/employeepayrollapp/src/assets/images/logo.png'
+import { useParams, Link, withRouter ,Redirect} from 'react-router-dom';
 
 const PayrollForm = (props) => {
     let initialValue = {
@@ -42,12 +42,43 @@ const PayrollForm = (props) => {
         }
     }
     const [formValue, setForm] = useState(initialValue);
-  
     const employeeService = new EmployeeService();
+    const params = useParams();
 
+    useEffect(() => {
+        if (params.id) {
+          getDataById(params.id);
+        }
+      }, []);
+
+      const getDataById = (id) => {
+        employeeService
+          .getEmployee(id)
+          .then((data) => {
+            console.log("data is ", data.data);
+            let obj = data.data;
+            setData(obj);
+          })
+          .catch((err) => {
+            console.log("err is ", err);
+          });
+      };
     let _ = require('lodash');
     formValue.id = _.uniqueId();
     
+    const setData = (obj) => {
+        let array = obj.startDate.split(" ");
+        setForm({
+          ...formValue,
+          ...obj,
+          departMentValue: obj.departMent,
+          isUpdate: true,
+          day: array[0],
+          month: array[1],
+          year: array[2],
+        });
+      };
+
     const changeValue = (event) => {
         setForm({ ...formValue, [event.target.name]: event.target.value })
         console.log(event.target.value)
