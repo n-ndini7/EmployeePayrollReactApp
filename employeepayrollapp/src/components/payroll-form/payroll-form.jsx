@@ -169,6 +169,7 @@ const PayrollForm = (props) => {
             employeeService
               .updateEmployee(object)
               .then((data) => {
+                  window.confirm("Data once modified cannot be restored!! Do you wish to continue?");
                   alert("Data updated successfully!");
                 console.log("data after update", data);
                 props.history.push("");
