@@ -1,7 +1,7 @@
 {
   "employee": [
     {
-      "name": "Lisa Berhmen",
+      "name": "Lisa Berrrrrrrhmen",
       "departMent": [
         "HR",
         "Sales"
@@ -62,6 +62,18 @@
       "notes": "fifth check entry!!",
       "id": "80",
       "profileUrl": "../../assets/profile-images/Ellipse -3.png"
+    },
+    {
+      "name": "Zoeben Hill",
+      "departMent": [
+        "Sales"
+      ],
+      "gender": "male",
+      "salary": "454545",
+      "startDate": "17 June 2018",
+      "notes": "dummy entry!",
+      "id": "Mt2JX_v",
+      "profileUrl": "../../assets/profile-images/Ellipse -8.png"
     }
   ]
 }

@@ -63,8 +63,8 @@ const PayrollForm = (props) => {
             console.log("err is ", err);
           });
       };
-    let _ = require('lodash');
-    formValue.id = _.uniqueId();
+    //let _ = require('lodash');
+    //formValue.id = _.uniqueId();
     
     const setData = (obj) => {
         let array = obj.startDate.split(" ");
@@ -165,17 +165,31 @@ const PayrollForm = (props) => {
             profileUrl: formValue.profileUrl,
           };
           console.log("id"+formValue.id);
-          employeeService.addEmployee(object)
-            .then((data) => {
-                console.log(data+" \n Data Added successfully!");
-              alert("data added successfully");
-              props.history.push("");
-              window.location.reload();
-            })
-            .catch((error) => {
-                console.log(error+" cannot load data!");
-              alert("error while Adding data");
-            });
+          if (formValue.isUpdate) {
+            employeeService
+              .updateEmployee(object)
+              .then((data) => {
+                  alert("Data updated successfully!");
+                console.log("data after update", data);
+                props.history.push("");
+              })
+              .catch((error) => {
+                alert("WARNING!! Error updating the data!");
+                console.log("Error after update"+error);
+              });
+          } else {
+            employeeService
+              .addEmployee(object)
+              .then((data) => {
+                  alert("Data Added successfully!!")
+                console.log("Employee payroll added");
+                props.history.push("");
+              })
+              .catch((err) => {
+                  alert("WARNING!! Error while adding the data!");
+                console.log("error occured while adding employee");
+              });
+          }
         }
           };
   
