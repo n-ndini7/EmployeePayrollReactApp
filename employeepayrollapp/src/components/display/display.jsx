@@ -31,6 +31,7 @@ const Display = (props) => {
       });
   };
 
+  
   return (
     <table id="display" className="display">
       <tbody>
@@ -43,18 +44,19 @@ const Display = (props) => {
           <th>Start Date</th>
           <th>Actions</th>
         </tr>
+        
         {props.employeeArray &&
           props.employeeArray.map((element, ind) => (
             <tr key={ind}>
               <td><img className="profile" 
               src={
-                element.profileUrl ===
+                element.profilePic ===
                 "../../assets/profile-images/Ellipse -3.png"
                   ? profile1
-                  : element.profileUrl ===
+                  : element.profilePic ===
                     "../../assets/profile-images/Ellipse -1.png"
                   ? profile2
-                  : element.profileUrl ===
+                  : element.profilePic ===
                     "../../assets/profile-images/Ellipse -8.png"
                   ? profile3
                   : profile4
@@ -65,8 +67,8 @@ const Display = (props) => {
               <td>{element.name}</td>
               <td className="gender">{element.gender}</td>
               <td>
-                {element.departMent &&
-                  element.departMent.map((dept) => (
+                {element.departments &&
+                  element.departments.map((dept) => (
                     <div className="dept-label">{dept}</div>
                   ))}
               </td>
@@ -74,12 +76,12 @@ const Display = (props) => {
               <td>{element.startDate}</td>
               <td>
                 <img
-                  onClick={() => remove(element.id)}
+                  onClick={() => remove(element.employee_id)}
                   src={deleteIcon}
                   alt="delete"
                 />
                 <img
-                  onClick={() => update(element.id)}
+                  onClick={() => update(element.employee_id)}
                   src={editIcon}
                   alt="edit"
                 />

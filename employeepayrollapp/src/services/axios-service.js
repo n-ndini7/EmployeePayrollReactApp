@@ -1,5 +1,9 @@
 const axios = require("axios").default;
 class AxiosService {
+    
+        headers: {
+          'Access-Control-Allow-Origin': '*',
+        };
     postService(url = "", payload = null, tokenRequired = false, httpOptions = null) {
         return axios.post(url, payload, tokenRequired && httpOptions);
     }

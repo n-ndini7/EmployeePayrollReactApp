@@ -26,17 +26,18 @@ export default class Home extends React.Component {
   getAllEmployee = () => {
     this.employeeService
       .getAllEmployee()
-      .then((data) => {
-        console.log("data after get ", data.data);
+      .then((response) => {
+        console.log("data after get ", response.data.data);
         this.setState({
-          employeeArray: data.data,
-          AllEmployeeArray: data.data,
+          employeeArray: response.data.data,
+          AllEmployeeArray: response.data.data,
         });
       })
       .catch((err) => {
         console.log("err after ", err);
       });
   };
+
   search = async (event) => {
     let search = event.target.value;
     
@@ -50,7 +51,6 @@ export default class Home extends React.Component {
     
     this.setState({ employeeArray: empArray });
   };
-
   render() {
     return (
       <div>
