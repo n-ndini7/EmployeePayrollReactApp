@@ -19,11 +19,16 @@ const Display = (props) => {
     employeeService
       .deleteEmployee(employeeId)
       .then((data) => {
-        window.confirm("Data once deleted cannot be restored!! Do you wish to continue ?");
+        var answer = window.confirm("Data once deleted cannot be restored!! Do you wish to continue ?");
+        if(answer == true){
         alert("Data deleted successfully!!");
         window.location.reload();
         console.log("data after delete", data);
         props.getAllEmployee();
+        }
+        else{
+          window.location.reload();
+        }
       })
       .catch((err) => {
         alert("error while deleting the data!");
